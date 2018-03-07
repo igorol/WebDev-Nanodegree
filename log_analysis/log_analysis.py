@@ -15,6 +15,7 @@ def print_top_articles(dbname, query):
         print(row[0], '-', row[1], 'views')
     db.close()
 
+
 def print_top_authors(dbname, query):
     """Prints a list of authors ranked by article views."""
     db = psycopg2.connect('dbname={}'.format(dbname))
@@ -26,7 +27,6 @@ def print_top_authors(dbname, query):
     for row in results:
         print('Author:', row[0], '-', row[1], 'views')
     db.close()
-
 
 
 def print_errors_over_one(dbname, query):
@@ -64,7 +64,6 @@ if __name__ == '__main__':
     WHERE status = '404 NOT FOUND' GROUP BY day) AS table2 ON
     table1.day = table2.day) WHERE (table2.hits * 100.0)/(table1.hits) > 1;
     """
-
 
     dbname = 'news'
     print_top_articles(dbname, query_1)
